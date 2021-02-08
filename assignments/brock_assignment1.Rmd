@@ -1,0 +1,20 @@
+---
+title: "Assignment 1"
+subtitle: "ESM 262"
+author: "Cameryn Brock"
+date: "2/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**Why I am taking this course**
+
+I'm taking this course because I'd like to learn how streamline my coding workflow for data analysis and visualization. I'd also like to begin learning how to develop packages and apps. 
+
+**Data science background**
+
+All my data science background comes from Bren. I've taken ESM 206 and 244, and tried to use R for most of my coursework. Specifically, I worked to use R for spatial analyses in place of ArcMap in Conservation Planning (ESM 270). After the course, I created several tutorials for CP labs that future students can use to complete their assignments in R instead of ArcMap. Lastly, I am also the Co-Host of UCSB's Tidy Tuesday Coding Club with Allison Horst and Keene Morrow. Tidy Tuesday is a weekly R coding club that provides a supportive environment for participants to learn and code together. Weekly topics vary from demos in data analysis and visualization to discussions in data ethics.
+
