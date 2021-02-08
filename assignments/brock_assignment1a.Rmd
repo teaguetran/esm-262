@@ -1,5 +1,5 @@
 ---
-title: "Assignment 1"
+title: "Assignment 1a"
 subtitle: "ESM 262"
 author: "Cameryn Brock"
 date: "2/8/2021"
@@ -9,6 +9,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 
 **Why I am taking this course**
 
