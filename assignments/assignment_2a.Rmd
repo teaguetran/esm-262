@@ -12,7 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 source("R/power.R")
-
 power
 ```
 
@@ -20,13 +19,15 @@ power
 heavy_30m <- power(m = 31725, v = 30, a = 9)
 heavy_30m
 
-heavy_40km <- power(m = 31725, v = (40*1000), a = 9)
+### need to change to km/hr instead of m/s
+
+heavy_40km <- power(m = 31725, v = (40*3.6), a = 9) # *3.6 converts km to m
 heavy_40km
 
-heavy_80km <- power(m = 31725, v = (80*1000), a = 9)
+heavy_80km <- power(m = 31725, v = (80*3.6), a = 9)
 heavy_80km
 
-heavy_120km <- power(m = 31725, v = (120*1000), a = 9)
+heavy_120km <- power(m = 31725, v = (120*3.6), a = 9)
 heavy_120km
 ```
 
