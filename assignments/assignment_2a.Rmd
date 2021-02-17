@@ -1,12 +1,15 @@
 ---
 title: "Assignment 2a"
-author: "Cameryn Brock"
+subtitle: "ESM 262"
+author: "Allison Bailey, Bri Baker, Cameryn Brock, and Emiliano Espinoza"
 date: "2/17/2021"
 output: html_document
 ---
 
 ```{r setup, include=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
 ```
 
 ```{r}
@@ -27,8 +30,6 @@ power_light
 ### Plot power as a function of speed
 
 ```{r}
-library(tidyverse)
-
 power_speed <- data.frame(speed, power_heavy, power_light) %>% 
   rename(heavy = power_heavy,
          light = power_light) %>% 
