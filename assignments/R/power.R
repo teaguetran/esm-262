@@ -11,5 +11,5 @@
 power_fun <- function(m, v, a, 
                   g = 9.8, p_a = 1.2, 
                   c_d = 0.3, c_r = 0.015) {
-  power = c_r * m * g * v * 0.5 * a * p_a * v^3 
+  power = c_r * m * g * v + 0.5 * a * p_a * v^3 
 }
