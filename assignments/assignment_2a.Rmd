@@ -15,7 +15,7 @@ power_fun
 ```
 
 ```{r}
-speed <- c(30, (40*0.278), (80*0.278), (120*0.278)) # speeds on four highways
+speed <- c(30, (40*0.278), (80*0.278), (120*0.278)) # speeds on four highways; *0.278 to convert km/hr to m/s
 
 power_heavy <- power_fun(m = 31725, v = speed, a = 9) # power as a function of speed for a heavy vehicle
 power_heavy
