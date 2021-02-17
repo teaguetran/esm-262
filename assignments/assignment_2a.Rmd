@@ -5,32 +5,46 @@ date: "2/17/2021"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ```{r}
-source("R/power.R")
-power
+source("R/power.R") # function for computing power required to keep a car moving at a given speed
+power_fun
 ```
 
 ```{r}
-heavy_30m <- power(m = 31725, v = 30, a = 9)
-heavy_30m
+speed <- c(30, (40*0.278), (80*0.278), (120*0.278)) # speeds on four highways
 
-### need to change to km/hr instead of m/s
+power_heavy <- power_fun(m = 31725, v = speed, a = 9) # power as a function of speed for a heavy vehicle
+power_heavy
 
-heavy_40km <- power(m = 31725, v = (40*3.6), a = 9) # *3.6 converts km to m
-heavy_40km
-
-heavy_80km <- power(m = 31725, v = (80*3.6), a = 9)
-heavy_80km
-
-heavy_120km <- power(m = 31725, v = (120*3.6), a = 9)
-heavy_120km
+power_light <- power_fun(m = 31725*0.75, v = speed, a = 9) # power for a lighter vehicle (only 75% of the mass of the original vehicle)
+power_light
 ```
 
+### Plot power as a function of speed
+
+```{r}
+library(tidyverse)
+
+power_speed <- data.frame(speed, power_heavy, power_light) %>% 
+  rename(heavy = power_heavy,
+         light = power_light) %>% 
+  pivot_longer(cols = 2:3,
+               names_to = "mass",
+               values_to = "power")
+
+ggplot(power_speed, aes(x = speed, y = power)) + 
+  geom_line(aes(color = mass)) + 
+  theme_minimal() + 
+  scale_color_manual(values = c("deepskyblue4", "deepskyblue3")) +
+  labs(title = "Vehicle Power as a Function of Speed and Mass",
+       x = "Speed (m/s)",
+       y = "Power (Watts)",
+       color = "Mass (kg)")
+```
 
 
 
