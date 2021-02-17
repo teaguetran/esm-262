@@ -1,0 +1,39 @@
+---
+title: "Assignment 2a"
+author: "Cameryn Brock"
+date: "2/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+source("R/power.R")
+
+power
+```
+
+```{r}
+heavy_30m <- power(m = 31725, v = 30, a = 9)
+heavy_30m
+
+heavy_40km <- power(m = 31725, v = (40*1000), a = 9)
+heavy_40km
+
+heavy_80km <- power(m = 31725, v = (80*1000), a = 9)
+heavy_80km
+
+heavy_120km <- power(m = 31725, v = (120*1000), a = 9)
+heavy_120km
+```
+
+
+
+
+
+
+
+
