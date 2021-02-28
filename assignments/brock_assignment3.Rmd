@@ -1,0 +1,86 @@
+---
+title: "ESM 262 Assignment 3"
+author: "Cameryn Brock"
+date: "2/28/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+### (Simplified) Function for Reaching Functional Extinction
+
+*If a species declines by x% per year, how long until the population will reach functional extinction?* 
+
+```{r}
+source("R/time_extinc.R")
+```
+
+Example: 
+
+* Species name: Fire dragon
+* Initial population size: 10,000 individuals
+* Population size at function extinction: 50 individuals
+* Maximum time to project out to: 1,000 years
+
+
+```{r}
+# set constants (for this example - not universal)
+n_e = 50
+t_max = 1000
+t_0 = 0
+
+# If declining 10% per year 
+time_extinc_fun(
+  t = t_0,
+  n_t = 10000,
+  p_d = (-0.1),
+  n_e = n_e,
+  t_max = t_max
+)
+```
+If declining 10% per year, will reach functional extinction in 51 years.
+
+
+```{r}
+# if declining 1% per year
+time_extinc_fun(
+  t = t_0,
+  n_t = 10000,
+  p_d = (-0.01),
+  n_e = n_e,
+  t_max = t_max
+)
+```
+If declining 1% per year, functional extinction in 528 years.
+
+```{r}
+pct_d = seq(from = 0, to = -1, by = -0.0005)
+
+extinc_times <- pct_d %>% 
+  sapply(time_extinc_fun,
+          t = t_0, n_t = 5000,
+          n_e = n_e, t_max = t_max)
+
+extinc_times_df <- data.frame(pct_decline = pct_d, 
+                              extinc_time = extinc_times)
+
+extinct_concern <- extinc_times_df %>% 
+  mutate(concern = case_when(
+    extinc_time >= 500 ~ "Low",
+    extinc_time < 500 & extinc_time > 250 ~ "Moderate",
+    extinc_time < 250 & extinc_time > 50 ~ "High",
+    extinc_time <= 50 ~ "Very High"))
+```
+
+
+
+
+
+
+

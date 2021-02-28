@@ -1,0 +1,56 @@
+---
+title: "Assignment 2b"
+author: "Cameryn Brock"
+date: "2/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+source("R/power.R") # function for computing power required to keep a car moving at a given speed
+power_fun
+```
+
+```{r}
+speed <- c(30, (40*0.278), (80*0.278), (120*0.278)) # speeds on four highways; *0.278 to convert km/hr to m/s
+
+power_heavy <- power_fun(m = 31725, v = speed, a = 9) # power as a function of speed for a heavy vehicle
+power_heavy
+
+power_light <- power_fun(m = 31725*0.75, v = speed, a = 9) # power for a lighter vehicle (only 75% of the mass of the original vehicle)
+power_light
+```
+
+### Plot power as a function of speed
+
+```{r}
+power_speed <- data.frame(speed, power_heavy, power_light) %>% 
+  rename(heavy = power_heavy,
+         light = power_light) %>% 
+  pivot_longer(cols = 2:3,
+               names_to = "mass",
+               values_to = "power")
+
+ggplot(power_speed, aes(x = speed, y = power)) + 
+  geom_line(aes(color = mass)) + 
+  theme_minimal() + 
+  scale_color_manual(values = c("deepskyblue4", "deepskyblue3")) +
+  labs(title = "Vehicle Power as a Function of Speed and Mass",
+       x = "Speed (m/s)",
+       y = "Power (Watts)",
+       color = "Mass (kg)")
+```
+
+
+
+
+
+
+
