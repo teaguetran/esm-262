@@ -183,7 +183,19 @@ pre code {
 <div id="simplified-function-for-reaching-functional-extinction" class="section level3">
 <h3>(Simplified) Function for Reaching Functional Extinction</h3>
 <p><em>If a species declines by x% per year, how long until the population will reach functional extinction?</em></p>
-<pre class="r"><code>source(&quot;R/time_extinc.R&quot;)</code></pre>
+<pre class="r"><code>source(&quot;R/time_extinc.R&quot;)
+
+time_extinc_fun</code></pre>
+<pre><code>## function (n_t, p_d, n_e, t, t_max) 
+## {
+##     n_t = ifelse((n_t &lt; 0), return(&quot;Initial population size must be greater than zero&quot;), 
+##         n_t)
+##     while ((n_t &gt;= n_e) &amp; (t &lt;= t_max)) {
+##         n_t = n_t + n_t * p_d
+##         t = t + 1
+##     }
+##     return(t)
+## }</code></pre>
 <p>Example:</p>
 <ul>
 <li>Species name: Fire dragon</li>

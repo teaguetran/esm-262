@@ -19,6 +19,8 @@ library(tidyverse)
 
 ```{r}
 source("R/time_extinc.R")
+
+time_extinc_fun
 ```
 
 Example: 
