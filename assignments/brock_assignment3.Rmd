@@ -60,7 +60,7 @@ time_extinc_fun(
 If declining 1% per year, functional extinction in 528 years.
 
 ```{r}
-pct_d = seq(from = 0, to = -1, by = -0.0005)
+pct_d = seq(from = -0.005, to = -0.6, by = -0.005)
 
 extinc_times <- pct_d %>% 
   sapply(time_extinc_fun,
@@ -70,7 +70,7 @@ extinc_times <- pct_d %>%
 extinc_times_df <- data.frame(pct_decline = pct_d, 
                               extinc_time = extinc_times)
 
-extinct_concern <- extinc_times_df %>% 
+extinc_concern <- extinc_times_df %>% 
   mutate(concern = case_when(
     extinc_time >= 500 ~ "Low",
     extinc_time < 500 & extinc_time > 250 ~ "Moderate",
@@ -78,6 +78,25 @@ extinct_concern <- extinc_times_df %>%
     extinc_time <= 50 ~ "Very High"))
 ```
 
+## Visualize Results
+
+```{r}
+extinc_concern$concern <- factor(extinc_concern$concern, 
+                                 levels = c("Low", "Moderate", 
+                                            "High", "Very High"))
+
+ggplot(extinc_concern, aes(x = pct_decline,
+                           y = extinc_time)) + 
+  geom_point(aes(color = concern),
+             alpha = 0.9) + 
+  scale_color_manual(values = c("#1481BA", "#68A691", "#f19953", "#9b1d20")) +
+  scale_x_continuous(trans = "reverse") +
+  theme_minimal() +
+  theme(legend.position = "top") +
+  labs(color = "Level of concern",
+       x = "Annual decline (%)",
+       y = "Time to functional extinction (years)")
+```
 
 
 

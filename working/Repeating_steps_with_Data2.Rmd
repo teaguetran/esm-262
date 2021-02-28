@@ -117,7 +117,7 @@ yr=1
 pollutant_level = 5
 
 # loop
-while ((pollutant_level < 30) &&(yr < 1000))  {
+while ((pollutant_level < 30) & (yr < 1000))  {
   # increase pollutant
 pollutant_level = pollutant_level + 0.01* pollutant_level 
 # keep track of time
