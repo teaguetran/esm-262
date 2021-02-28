@@ -59,6 +59,8 @@ time_extinc_fun(
 ```
 If declining 1% per year, functional extinction in 528 years.
 
+### Make df with `sapply`
+
 ```{r}
 pct_d = seq(from = -0.005, to = -0.6, by = -0.005)
 
@@ -69,7 +71,11 @@ extinc_times <- pct_d %>%
 
 extinc_times_df <- data.frame(pct_decline = pct_d, 
                               extinc_time = extinc_times)
+```
 
+### Add level of concern with `case_when`
+
+```{r}
 extinc_concern <- extinc_times_df %>% 
   mutate(concern = case_when(
     extinc_time >= 500 ~ "Low",
@@ -78,7 +84,7 @@ extinc_concern <- extinc_times_df %>%
     extinc_time <= 50 ~ "Very High"))
 ```
 
-## Visualize Results
+### Visualize Results
 
 ```{r}
 extinc_concern$concern <- factor(extinc_concern$concern, 
