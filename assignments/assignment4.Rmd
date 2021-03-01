@@ -1,0 +1,29 @@
+---
+title: "Assignment 4"
+author: "Cameryn Brock"
+date: "3/1/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+
+fish_data <- read.table("data/fish.txt",
+                        header = TRUE) %>% 
+  rename("species" = x) %>% 
+  drop_na()
+
+fish_factor <- as.factor(fish_data)
+summary(fish_factor)
+
+source("R/fish_fun.R")
+
+fish_summary <- fish_fun(species = fish_factor)
+
+fish_summary
+```
+
