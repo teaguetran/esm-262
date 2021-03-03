@@ -8,8 +8,8 @@
 #  include an option (defaulted to FALSE) that if TRUE also returns a histogram of the number of each fish type, with a title giving the total number of fish caught.  Remember that you can save a graph as a variable.
 
 fish_fun <- function(species, common, rare, total){
-  common = which.max(summary(species))
-  rare = which.min(summary(species))
+  common = names(which.max(summary(species)))
+  rare = names(which.min(summary(species)))
   total = length(summary(species))
   return(list(common = common, rare = rare, total = total))
 }
